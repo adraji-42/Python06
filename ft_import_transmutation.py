@@ -1,6 +1,6 @@
 """Demonstration script for import transmutation methods using smart logic."""
 
-import alchemy.elements
+import alchemy.elements as elements
 from alchemy.elements import create_water
 from alchemy.potions import strength_potion
 from alchemy.potions import healing_potion as heal
@@ -12,9 +12,7 @@ def main() -> None:
     print("=== Import Transmutation Mastery ===\n")
 
     print("Method 1 - Full module import:")
-    print(
-        f"alchemy.elements.create_fire(): {alchemy.elements.create_fire()}\n"
-    )
+    print(f"alchemy.elements.create_fire(): {elements.create_fire()}\n")
 
     print("Method 2 - Specific function import:")
     print(f"create_water(): {create_water()}\n")
