@@ -27,7 +27,10 @@ def main() -> None:
     print("Testing Package Access:")
     funcs: List[str] = ["lead_to_gold", "philosophers_stone"]
     for name in funcs:
-        func: Callable[[], str] = getattr(alchemy.transmutation, name)
+        try:
+            func: Callable[[], str] = getattr(alchemy.transmutation, name)
+        except Exception as e:
+            print(f"Unexpected Error: {e}\n")
         print(f"alchemy.transmutation.{name}(): {func()}")
 
     print("\nBoth pathways work! Absolute: clear, Relative: concise")

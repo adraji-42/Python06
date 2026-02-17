@@ -9,18 +9,25 @@ def main() -> None:
     spells = ["fire air", "dragon scales"]
 
     for spell in spells:
-        print(
-            f"validate_ingredients(\"{spell}\"): {validate_ingredients(spell)}"
-        )
+        try:
+            print(
+                f"validate_ingredients(\"{spell}\"): "
+                f"{validate_ingredients(spell)}"
+            )
+        except Exception as e:
+            print(f"Unexpected Error: {e}\n")
 
     print("\nTesting spell recording with validation:")
     spells = [("Fireball", "fire air"), ("Dark Magic", "shadow")]
 
     for name, spell in spells:
-        print(
-            f"record_spell{(name, spell)}: "
-            f"Spell recorded: {record_spell(name, spell)}"
-        )
+        try:
+            print(
+                f"record_spell{(name, spell)}: "
+                f"Spell recorded: {record_spell(name, spell)}"
+            )
+        except Exception as e:
+            print(f"Unexpected Error: {e}\n")
 
     print("\nTesting late import technique:")
     print(
@@ -33,4 +40,7 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e:
+        print(f"Unexpected Error: {e}\n")

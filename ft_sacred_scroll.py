@@ -2,32 +2,33 @@
 
 import alchemy
 import alchemy.elements as elements
-from typing import List, Callable
 
 
 def main() -> None:
     """Execution point using unified getattr logic."""
     print("\n=== Sacred Scroll Mastery ===\n")
 
-    spell_names: List[str] = [
+    spell_names = [
         "create_fire", "create_water", "create_earth", "create_air"
     ]
 
     print("Testing direct module access:")
     for name in spell_names:
         try:
-            spell_func: Callable[[], str] = getattr(elements, name)
-            print(f"alchemy.elements.{name}(): {spell_func()}")
+            print(f"alchemy.elements.{name}(): {getattr(elements, name)()}")
         except AttributeError:
             print(f"alchemy.elements.{name}(): AttributeError - not found")
+        except Exception as e:
+            print(f"Unexpected Error: {e}\n")
 
     print("\nTesting package-level access (controlled by __init__.py):")
     for name in spell_names:
         try:
-            package_func: Callable[[], str] = getattr(alchemy, name)
-            print(f"alchemy.{name}(): {package_func()}")
+            print(f"alchemy.{name}(): {getattr(alchemy, name)()}")
         except AttributeError:
             print(f"alchemy.{name}(): AttributeError - not exposed")
+        except Exception as e:
+            print(f"Unexpected Error: {e}\n")
 
     print("\nPackage metadata:")
     print(f"Version: {alchemy.__version__}")
@@ -35,4 +36,7 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e:
+        print(f"Unexpected Error: {e}\n")
